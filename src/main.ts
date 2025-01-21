@@ -16,7 +16,7 @@ async function bootstrap() {
     .setTitle('Nest clean Artch example')
     .setDescription('The API description')
     .setVersion('1.0')
-    .addTag('cats')
+    // .addTag('cats')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, documentFactory);
