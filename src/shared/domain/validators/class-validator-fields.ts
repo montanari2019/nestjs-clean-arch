@@ -7,8 +7,8 @@ import {
 export abstract class ClassValidatorFields<PropsValidatedGeneric>
   implements ValidatorFieldsInterface<PropsValidatedGeneric>
 {
-  errors: FieldsErrors;
-  validatedData: PropsValidatedGeneric;
+  errors: FieldsErrors | null = null;
+  validatedData: PropsValidatedGeneric | null = null;
 
   validate(data: any): boolean {
     const errorsClassValidator = validateSync(data);
@@ -17,8 +17,8 @@ export abstract class ClassValidatorFields<PropsValidatedGeneric>
       this.errors = {};
 
       for (const error of errorsClassValidator) {
-        const filed = error.property;
-        this.errors[filed] = Object.values(error.constraints ?? '');
+        const field = error.property;
+        this.errors[field] = Object.values(error.constraints ?? '');
       }
     } else {
       this.validatedData = data;

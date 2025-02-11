@@ -3,7 +3,7 @@ export type FieldsErrors = {
 };
 
 export interface ValidatorFieldsInterface<PropsValidatedGeneric> {
-  errors: FieldsErrors;
-  validatedData: PropsValidatedGeneric;
+  errors: FieldsErrors | null;
+  validatedData: PropsValidatedGeneric | null;
   validate: (data: any) => boolean;
 }
