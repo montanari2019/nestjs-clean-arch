@@ -33,4 +33,22 @@ describe('Class Validator Fields Unit Test', () => {
       field: ['Is not empty test mock'],
     });
   });
+
+  it('should validate without erros', () => {
+    const spyValidadeSync = jest.spyOn(LibClassValidate, 'validateSync');
+
+    spyValidadeSync.mockReturnValue([]);
+
+    const sut = new StubClassValidatorFields();
+    const dataValidate = {
+      field: 'Value teste',
+    };
+
+    expect(sut.validate(dataValidate)).toBeTruthy();
+
+    expect(spyValidadeSync).toHaveBeenCalled();
+
+    expect(sut.validatedData).toStrictEqual(dataValidate);
+    expect(sut.errors).toBeNull();
+  });
 });
